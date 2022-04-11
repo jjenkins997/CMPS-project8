@@ -1,0 +1,51 @@
+@page
+@using p8_c00227447_c00409618.Pages
+@model p8_c00227447_c00409618.Pages.index
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+@{
+    ViewData["Title"] = "Discontinued Products";
+}
+
+<div class="text-center">
+    <!-- discontinued products-->
+    <form method="post" enctype="multipart/form-data">
+        List discontinued products:
+        <input type="hidden" asp-for="discontinued" value="decoy">
+        <input type="submit" value="Submit">
+    </form>
+    <p>@discontinuedList.listDiscontinued(@Model.discontinued)</p>
+    
+    <!-- Enter a Country to get name and number of customers in that country-->
+    <form method="post" enctype="multipart/form-data">
+        Enter a country for customer information: 
+        <input type="text" asp-for="Country">
+        <input type="submit" value="Submit">
+    </form>
+    <p>@customerInformation.countryCustomers(@Model.Country)</p>
+    
+    <!-- List the suppliers in a user selected country-->
+    <form method="post" enctype="multipart/form-data">
+        Enter a country for supplier information: 
+        <input type="text" asp-for="supplyCountry">
+        <input type="submit" value="Submit">
+    </form>
+    <p>@supplierInformation.countrySuppliers(@Model.supplyCountry)</p>
+    
+    <!-- List all products supplied by supplier that is not discontinued-->
+    <form method="post" enctype="multipart/form-data">
+        Enter a supplier for product information: 
+        <input type="text" asp-for="supplier">
+        <input type="submit" value="Submit">
+    </form>
+    <p>@productInfo.getProductInfo(@Model.supplier)</p>
+    
+    <!--Print Order information-->
+       <form method="post" enctype="multipart/form-data">
+            Enter your order number: 
+            <input type="text" asp-for="orderNumber">
+            <input type="submit" value="Submit">
+        </form>
+        <p>@orderInfo.getOrder(@Model.orderNumber)</p>
+</div>
